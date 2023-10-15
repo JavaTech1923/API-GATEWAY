@@ -9,7 +9,8 @@ spring:
         uri: lb://COUPON-SERVICE
         predicates:
         - Path=/coupon/**
-#        filters:
+        filters:
+          - AuthenticationFilter
 #        - name: CircuitBreaker
 #          args:
 #            name: order-service
@@ -20,6 +21,13 @@ spring:
         uri: lb://PRODUCT-SERVICE
         predicates:
         - Path=/product/**
+        filters:
+           - AuthenticationFilter
+        
+      - id: AUTH-SERVICE
+        uri: lb://AUTH-SERVICE
+        predicates:
+        - Path=/auth/**
 #        filters:
 #         - name: CircuitBreaker
 #           args:
